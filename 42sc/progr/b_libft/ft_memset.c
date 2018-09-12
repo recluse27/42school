@@ -6,11 +6,14 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 18:38:40 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/10 22:30:14 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/11 09:30:30 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memset(void *b, int c, size_t len)
+#include "libft.h"
+#include <stdlib.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
 	int				i;
 	unsigned char	*p;
