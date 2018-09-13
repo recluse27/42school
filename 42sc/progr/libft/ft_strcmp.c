@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 18:44:44 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/12 20:28:30 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/10 18:07:39 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/09/11 09:23:04 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	while (*s)
+	while (*s1 && *s1 == *s2)
 	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
+		s1++;
+		s2++;
 	}
-	return ((char *)NULL);
+	return (*s1 - *s2);
 }
