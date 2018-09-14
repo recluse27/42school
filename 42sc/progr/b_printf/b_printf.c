@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   b_printf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 18:44:44 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/13 23:16:10 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/09/13 23:35:19 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<stdarg.h>
 
-#include "libft.h"
-#include <string.h>
-
-char	*ft_strchr(const char *s, int c)
+int		b_printf(char *format, ...)
 {
-	int	i;
+	va_list		arg;
+	//size_t		i;
+	//size_t		count;
+	//t_format	*temp;
+	char *ch;
 
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-		i++;
-	if (s[i] == c || c == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	va_start(arg, format);
+
+	while (*ch != '\0')
+	{
+		
+	}
 }
