@@ -65,15 +65,15 @@ char	*ft_itoa_base(int value, int base)
 int		b_printf(char *format, ...)
 {
 	va_list	arg;
-	//size_t	i;
 	int		i;
 	char	*ch;
 	char	*s;
 
 	va_start(arg, format);
+	ch = format;
 	while (*ch != '\0')
 	{
-		while (*ch != '%')
+		while (*ch != '%' && *ch != '\0')
 		{
 			ft_putchar(*ch);
 			ch++;
@@ -137,7 +137,9 @@ int		b_printf(char *format, ...)
 
 int		main(void)
 {
-	printf("Hello terter %i %d %u", 2, 13, 14);
-	b_printf("Hello terter %i %d %u", 2, 13, 14);
+	//printf("Hello %i %d %u terter", -2, -13, 14);
+
+	b_printf("Hello %d terter", 13);
+	//printf("Hello %d terter", 13);
 	return (0);
 }
