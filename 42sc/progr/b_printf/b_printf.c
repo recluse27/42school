@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/15 00:40:53 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/16 12:31:55 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 void	ft_putchar(char c)
 {
@@ -86,13 +87,13 @@ int		b_printf(char *format, ...)
 		}
 		else if (*ch == 'd' || *ch == 'i')
 		{
-			i = va_arg(arg, int);
-			if (i < 0)
-			{
-				i *= -1; // i = -i;
-				ft_putchar('-');
-			}
-			ft_putstr(ft_itoa_base(i, 10));
+			//i = va_arg(arg, int);
+			// if (i < 0)
+			// {
+			// 	i *= -1; // i = -i;
+			// 	ft_putchar('-');
+			// }
+			ft_putstr(ft_itoa_base(va_arg(arg, int), 10));
 		}
 		else if (*ch == 'o')
 		{
@@ -109,16 +110,6 @@ int		b_printf(char *format, ...)
 			i = va_arg(arg, unsigned int);
 			ft_putstr(ft_itoa_base(i, 16));
 		}
-		// else if (*ch == 'i')
-		// i = va_arg(arg, int);
-		// {
-		// 	if(i < 0)
-		// 	{
-		// 		i *= -1; // i = -i;
-		// 		ft_putchar('-');
-		// 	}
-		// 	ft_putstr(ft_itoa_base(i, 10));
-		// }
 		else if (*ch == 'p')
 		{
 			s = va_arg(arg, char *);
@@ -137,9 +128,40 @@ int		b_printf(char *format, ...)
 
 int		main(void)
 {
-	//printf("Hello %i %d %u terter", -2, -13, 14);
+	b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	b_printf("Hello %d terter\n", -11);
+	// printf("Hello %d terter\n", -11);
 
-	b_printf("Hello %d terter", 13);
-	//printf("Hello %d terter", 13);
+	b_printf("Hello %i terter\n", 10);
+	// printf("Hello %i terter\n", 10);
+	b_printf("Hello %i terter\n", -5);
+	// printf("Hello %i terter\n", -5);
+
+	//b_printf("Hello %s terter\n", "");
+	//printf("Hello %s terter\n", "");
+	//b_printf("Hello %s terter\n", "world");
+	//printf("Hello %s terter\n", "world");
+
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+
 	return (0);
 }
