@@ -65,7 +65,7 @@ char	*ft_itoa_base(int value, int base)
 int		b_printf(const char *format, ...)
 {
 	va_list		arg;
-	unsigned int			i;
+	//	long	i;
 	const char	*ch;
 	char		*s;
 
@@ -82,8 +82,8 @@ int		b_printf(const char *format, ...)
 			ch++;
 			if (*ch == 'c')
 			{
-				i = va_arg(arg, int);
-				ft_putchar(i);
+				// i = va_arg(arg, int);
+				ft_putchar(va_arg(arg, int));
 			}
 			else if (*ch == 'd' || *ch == 'i')
 			{
@@ -92,18 +92,18 @@ int		b_printf(const char *format, ...)
 			}
 			else if (*ch == 'o')
 			{
-				i = va_arg(arg, unsigned int);
-				ft_putstr(ft_itoa_base(i, 8));
+				// i = va_arg(arg, unsigned int);
+				ft_putstr(ft_itoa_base(va_arg(arg, unsigned int), 8));
 			}
 			else if (*ch == 's')
 			{
-				s = va_arg(arg, char *);
-				ft_putstr(s);
+				// s = va_arg(arg, char *);
+				ft_putstr(va_arg(arg, char *));
 			}
 			else if (*ch == 'x')
 			{
-				i = va_arg(arg, unsigned int);
-				ft_putstr(ft_itoa_base(i, 16));
+				// i = va_arg(arg, unsigned int);
+				ft_putstr(ft_itoa_base(va_arg(arg, unsigned int), 16));
 			}
 			else if (*ch == 'p')
 			{
@@ -112,9 +112,13 @@ int		b_printf(const char *format, ...)
 			}
 			else if (*ch == 'u')
 			{
-				i = va_arg(arg, unsigned int);
-				printf("%i\n", i);
-				ft_putstr(ft_itoa_base(i, 10));
+				//i = va_arg(arg, unsigned long);
+				//printf("%d\n", i);
+				ft_putstr(ft_itoa_base(va_arg(arg, unsigned long), 10));
+			}
+			else if (*ch == '%')
+			{
+				ft_putchar('%');
 			}
 		}
 		ch++;
@@ -125,6 +129,8 @@ int		b_printf(const char *format, ...)
 
 int		main(void)
 {
+	int c = 3;
+	int b = -3;
 	// b_printf("Hello %d terter\n", 13);
 	// printf("Hello %d terter\n", 13);
 	// b_printf("Hello %d terter\n", -11);
@@ -156,15 +162,18 @@ int		main(void)
 	b_printf("Hello %u terter\n", -1);
 	printf("Hello %u terter\n", -1);
 
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
+	b_printf("Hello %p terter\n", &c);
+	printf("Hello %p terter\n", &c);
+	b_printf("Hello %p terter\n", &b);
+	printf("Hello %p terter\n", &b);
 
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);	
+	b_printf("Hello %x terter\n", 13);
+	printf("Hello %x terter\n", 13);
+	b_printf("Hello %x terter\n", -3);
+	printf("Hello %x terter\n", -3);
+
+	b_printf("Hello %% terter\n", 4);
+	// printf("Hello %% terter\n");		
 
 	return (0);
 }
