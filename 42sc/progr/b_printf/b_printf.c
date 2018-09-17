@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 void	ft_putchar(char c)
 {
@@ -63,62 +62,60 @@ char	*ft_itoa_base(int value, int base)
 	return (nbr);
 }
 
-int		b_printf(char *format, ...)
+int		b_printf(const char *format, ...)
 {
-	va_list	arg;
-	int		i;
-	char	*ch;
-	char	*s;
+	va_list		arg;
+	unsigned int			i;
+	const char	*ch;
+	char		*s;
 
 	va_start(arg, format);
 	ch = format;
 	while (*ch != '\0')
 	{
-		while (*ch != '%' && *ch != '\0')
+		if (*ch != '%')
 		{
 			ft_putchar(*ch);
+		}
+		else
+		{
 			ch++;
-		}
-		ch++;
-		if (*ch == 'c')
-		{
-			i = va_arg(arg, int);
-			ft_putchar(i);
-		}
-		else if (*ch == 'd' || *ch == 'i')
-		{
-			//i = va_arg(arg, int);
-			// if (i < 0)
-			// {
-			// 	i *= -1; // i = -i;
-			// 	ft_putchar('-');
-			// }
-			ft_putstr(ft_itoa_base(va_arg(arg, int), 10));
-		}
-		else if (*ch == 'o')
-		{
-			i = va_arg(arg, unsigned int);
-			ft_putstr(ft_itoa_base(i, 8));
-		}
-		else if (*ch == 's')
-		{
-			s = va_arg(arg, char *);
-			ft_putstr(s);
-		}
-		else if (*ch == 'x')
-		{
-			i = va_arg(arg, unsigned int);
-			ft_putstr(ft_itoa_base(i, 16));
-		}
-		else if (*ch == 'p')
-		{
-			s = va_arg(arg, char *);
-			ft_putstr(ft_itoa_base((unsigned long int)s, 16));
-		}
-		else if (*ch == 'u')
-		{
-			i = va_arg(arg, unsigned int);
-			ft_putstr(ft_itoa_base(i, 10));
+			if (*ch == 'c')
+			{
+				i = va_arg(arg, int);
+				ft_putchar(i);
+			}
+			else if (*ch == 'd' || *ch == 'i')
+			{
+
+				ft_putstr(ft_itoa_base(va_arg(arg, int), 10));
+			}
+			else if (*ch == 'o')
+			{
+				i = va_arg(arg, unsigned int);
+				ft_putstr(ft_itoa_base(i, 8));
+			}
+			else if (*ch == 's')
+			{
+				s = va_arg(arg, char *);
+				ft_putstr(s);
+			}
+			else if (*ch == 'x')
+			{
+				i = va_arg(arg, unsigned int);
+				ft_putstr(ft_itoa_base(i, 16));
+			}
+			else if (*ch == 'p')
+			{
+				s = va_arg(arg, void *);
+				ft_putstr(ft_itoa_base((unsigned long int)s, 16));
+			}
+			else if (*ch == 'u')
+			{
+				i = va_arg(arg, unsigned int);
+				printf("%i\n", i);
+				ft_putstr(ft_itoa_base(i, 10));
+			}
 		}
 		ch++;
 	}
@@ -128,20 +125,36 @@ int		b_printf(char *format, ...)
 
 int		main(void)
 {
-	b_printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", 13);
 	// printf("Hello %d terter\n", 13);
-	b_printf("Hello %d terter\n", -11);
+	// b_printf("Hello %d terter\n", -11);
 	// printf("Hello %d terter\n", -11);
 
-	b_printf("Hello %i terter\n", 10);
+	// b_printf("Hello %i terter\n", 10);
 	// printf("Hello %i terter\n", 10);
-	b_printf("Hello %i terter\n", -5);
+	// b_printf("Hello %i terter\n", -5);
 	// printf("Hello %i terter\n", -5);
 
-	//b_printf("Hello %s terter\n", "");
-	//printf("Hello %s terter\n", "");
-	//b_printf("Hello %s terter\n", "world");
-	//printf("Hello %s terter\n", "world");
+	// b_printf("Hello %s terter\n", "");
+	// printf("Hello %s terter\n", "");
+	// b_printf("Hello %s terter\n", "world");
+	// printf("Hello %s terter\n", "world");
+
+	// b_printf("Hello %c terter\n", 'a');
+	// printf("Hello %c terter\n", 'a');
+	// b_printf("Hello %c terter\n", 33);
+	// printf("Hello %c terter\n", 33);
+
+
+	// b_printf("Hello %o terter\n", 1);
+	// printf("Hello %o terter\n", 1);
+	// b_printf("Hello %o terter\n", 100);
+	// printf("Hello %o terter\n", 100);
+
+	b_printf("Hello %u terter\n", 1);
+	printf("Hello %u terter\n", 1);
+	b_printf("Hello %u terter\n", -1);
+	printf("Hello %u terter\n", -1);
 
 	// b_printf("Hello %d terter\n", 13);
 	// printf("Hello %d terter\n", 13);
@@ -151,17 +164,7 @@ int		main(void)
 	// b_printf("Hello %d terter\n", 13);
 	// printf("Hello %d terter\n", 13);
 	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);	
 
 	return (0);
 }
