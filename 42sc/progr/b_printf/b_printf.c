@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/16 12:31:55 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/17 22:40:40 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,71 @@ char	*ft_itoa(long long value, int base)
 	return (str);
 }
 
+// char	*ft_itoa(intmax_t value, int base)
+// {
+// 	static char		basetab[] = "0123456789abcdef";
+// 	static char			str[65];
+// 	intmax_t		tmp;
+// 	char			*nstr;
+
+// 	nstr = &str[64];
+// 	tmp = value < 0 ? -value : value;
+// 	int i = 0;
+// 	while (i < 65)
+// 	{
+// 		str[i] = 0;
+// 		i++;
+// 	}
+// 	str[64] = '\0';
+// 	while (tmp)
+// 	{
+// 		*--nstr = basetab[tmp % base];
+// 		tmp = tmp / base;
+// 	}
+// 	if (value < 0 && base == 10)
+// 		*--nstr = '-';
+// 	return (nstr);
+// }
+
+// char    *itoa_base_helper(char *tab, long long value, int base, int sign)
+// {
+//     unsigned long long    tmp;
+//     int                    size;
+//     char                *str;
+
+//     size = 0;
+//     tmp = (unsigned long long)value;
+//     while (tmp /= base)
+//         size++;
+//     size = size + sign + 1;
+//     str = (char *)malloc(sizeof(char)* (size + 1));
+//     str[size] = '\0';
+//     if (sign == 1)
+//         str[0] = '-';
+//     while (size > sign)
+//     {
+//         str[size - 1] = tab[(value % base)];
+//         size--;
+//         value = value / base;
+//     }
+//     return (str);
+// }
+
+// char    *ft_itoa(long long value, int base)
+// {
+//     char    *str;
+//     char    *basetab;
+//     int        sign;
+
+//     sign = 0;
+//     basetab = "0123456789abcdef";
+//     if (value < 0 && base == 10)
+//         sign = 1;
+//     value = (value < 0) ? -value : value;
+//     str = itoa_base_helper(basetab, value, base, sign);
+//     return (str);
+// }
+
 int		b_printf(const char *format, ...)
 {
 	va_list		arg;
@@ -116,25 +181,36 @@ int		b_printf(const char *format, ...)
 			}
 			else if (*ch == 'x')
 			{
-				ft_putstr(ft_itoa(va_arg(arg, unsigned int), 16));
-				n += ft_strlen(ft_itoa(va_arg(arg, unsigned int), 16));
+				char *str1 ;
+			
+				str1 =ft_itoa(va_arg(arg, unsigned int), 16);
+				ft_putstr(str1);
+				n += ft_strlen(str1);
 			}
 			else if (*ch == 'p')
 			{
 				ft_putstr("0x");
-				ft_putstr(ft_itoa((unsigned long int)va_arg(arg, void *), 16));
-				// ft_strlen(ft_itoa((unsigned long int)va_arg(arg, void *), 16));
+				char *str;
+				str = ft_itoa((unsigned long)va_arg(arg, void *), 16);
+				ft_putstr(str);
+				n += ft_strlen(str);
+				n += 2;
 			}
 			else if (*ch == 'u')
-			{
-				ft_putstr(ft_itoa(va_arg(arg, unsigned long), 10));
-				n += ft_strlen(ft_itoa(va_arg(arg, unsigned long), 10));
+			{	char *str;
+			
+				str = ft_itoa(va_arg(arg, unsigned long), 10);
+				n += ft_strlen(str);
+				ft_putstr(str);
+			//	n += ft_strlen(ft_itoa(va_arg(arg, unsigned long), 10));
 			}
 			else if (*ch == '%')
 			{
 				ft_putchar('%');
 				n++;
 			}
+			// else if (*ch == '\0')
+			// 	break;
 		}
 		ch++;
 	}
@@ -186,8 +262,8 @@ int		main(void)
 	// b_printf("Hello %x terter\n", -3);
 	// printf("Hello %x terter\n", -3);
 
-	b_printf("Hello % % terter\n");
-	printf("Hello % % terter\n");
+	// b_printf("Hello % % terter\n");
+	// printf("Hello % % terter\n");
 
 
 	// b_printf("%u", -356);
@@ -198,7 +274,19 @@ int		main(void)
 	// printf("\n ---- \n");
 	// printf("HALO %d", "%d", "%c");
 
-	printf("%d\n", b_printf("Hello %x terter\n", 120));
+	// printf("%d\n", b_printf("Hello %x terter", 120));
+	// printf("%d\n", printf("Hello %x terter", 120));
+	// printf("%d\n", b_printf("Hello %x terter", 12));
+	// printf("%d\n", printf("Hello %x terter", 12));
+	// printf("%d\n", b_printf("Hello %p terter", &b));
+	// printf("%d\n", printf("Hello %p terter", &b));
+
+	// printf("%d\n", b_printf("Hello %x terter", 74));
+	// printf("%d\n", printf("Hello %x terter", 74));
+
+	b_printf("Hello %  ");
+
+
 
 	return (0);
 }
