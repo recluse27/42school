@@ -14,34 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *c)
-{
-	while (*c != '\0')
-		ft_putchar(*c++);
-}
-
-int		ft_abs(int nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
-
-int		ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+#include "printf.h"
 
 char	*ft_itoa(long long value, int base)
 {
@@ -62,7 +35,7 @@ char	*ft_itoa(long long value, int base)
 	while (tmp /= base)
 		size++;
 	size += flag;
-	str = (char *)malloc(sizeof(char) * size  + 1);
+	str = (char *)malloc(sizeof(char) * size + 1);
 	str[size] = '\0';
 	if (flag == 1)
 		str[0] = '-';
@@ -107,7 +80,6 @@ int		b_printf(const char *format, ...)
 	const char	*ch;
 	int			n;
 	char		*str;
-
 
 	va_start(arg, format);
 	ch = format;
