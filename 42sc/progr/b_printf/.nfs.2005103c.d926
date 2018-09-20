@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/19 20:08:28 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/17 22:40:40 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_itoa(long long value, int base)
 	long long	tmp;
 
 	flag = 0;
-	size = 1;
+	size = 0;
 	tab = "0123456789abcdef";
 	if (base < 2 || base > 16)
 		return (0);
@@ -61,7 +61,7 @@ char	*ft_itoa(long long value, int base)
 	tmp = value;
 	while (tmp /= base)
 		size++;
-	size += flag;
+	size = size + flag + 1;
 	str = (char *)malloc(sizeof(char) * size  + 1);
 	str[size] = '\0';
 	if (flag == 1)
@@ -178,55 +178,55 @@ int		b_printf(const char *format, ...)
 
 int		main(void)
 {
-	int c = 3;
-	int b = -3;
-	b_printf("Hello %d terter\n", 13);
-	printf("Hello %d terter\n", 13);
-	b_printf("Hello %d terter\n", -11);
-	printf("Hello %d terter\n", -11);
+	// int c = 3;
+	// int b = -3;
+	// b_printf("Hello %d terter\n", 13);
+	// printf("Hello %d terter\n", 13);
+	// b_printf("Hello %d terter\n", -11);
+	// printf("Hello %d terter\n", -11);
 
-	b_printf("Hello %i terter\n", 10);
-	printf("Hello %i terter\n", 10);
-	b_printf("Hello %i terter\n", -5);
-	printf("Hello %i terter\n", -5);
+	// b_printf("Hello %i terter\n", 10);
+	// printf("Hello %i terter\n", 10);
+	// b_printf("Hello %i terter\n", -5);
+	// printf("Hello %i terter\n", -5);
 
-	b_printf("Hello %s terter\n", "");
-	printf("Hello %s terter\n", "");
-	b_printf("Hello %s terter\n", "world");
-	printf("Hello %s terter\n", "world");
+	// b_printf("Hello %s terter\n", "");
+	// printf("Hello %s terter\n", "");
+	// b_printf("Hello %s terter\n", "world");
+	// printf("Hello %s terter\n", "world");
 
-	b_printf("Hello %c terter\n", 'a');
-	printf("Hello %c terter\n", 'a');
-	b_printf("Hello %c terter\n", 33);
-	printf("Hello %c terter\n", 33);
+	// b_printf("Hello %c terter\n", 'a');
+	// printf("Hello %c terter\n", 'a');
+	// b_printf("Hello %c terter\n", 33);
+	// printf("Hello %c terter\n", 33);
 
-	b_printf("Hello %o terter\n", 1);
-	printf("Hello %o terter\n", 1);
-	b_printf("Hello %o terter\n", 100);
-	printf("Hello %o terter\n", 100);
+	// b_printf("Hello %o terter\n", 1);
+	// printf("Hello %o terter\n", 1);
+	// b_printf("Hello %o terter\n", 100);
+	// printf("Hello %o terter\n", 100);
 
-	b_printf("Hello %u terter\n", 1);
-	printf("Hello %u terter\n", 1);
-	b_printf("Hello %u terter\n", -1);
-	printf("Hello %u terter\n", -1);
+	// b_printf("Hello %u terter\n", 1);
+	// printf("Hello %u terter\n", 1);
+	// b_printf("Hello %u terter\n", -1);
+	// printf("Hello %u terter\n", -1);
 
-	b_printf("Hello %p terter\n", &c);
-	printf("Hello %p terter\n", &c);
-	b_printf("Hello %p terter\n", &b);
-	printf("Hello %p terter\n", &b);
+	// b_printf("Hello %p terter\n", &c);
+	// printf("Hello %p terter\n", &c);
+	// b_printf("Hello %p terter\n", &b);
+	// printf("Hello %p terter\n", &b);
 
-	b_printf("Hello %x terter\n", 13);
-	printf("Hello %x terter\n", 13);
-	b_printf("Hello %x terter\n", -3);
-	printf("Hello %x terter\n", -3);
+	// b_printf("Hello %x terter\n", 13);
+	// printf("Hello %x terter\n", 13);
+	// b_printf("Hello %x terter\n", -3);
+	// printf("Hello %x terter\n", -3);
 
 	// b_printf("Hello % % terter\n");
 	// printf("Hello % % terter\n");
 
-	// printf("HALLO");
-	// printf("%d", "%d");
-	// printf("\n----\n");
-	// printf("%d", "%d\n");
+	printf("HALLO");
+	printf("%d", "%d");
+	printf("\n----\n");
+	printf("%d", "%d\n");
 	// b_printf("%u", -356);
 	// printf("\n - \n");
 	// printf("%u", -356);
@@ -235,15 +235,15 @@ int		main(void)
 	// printf("\n ---- \n");
 	// printf("HALO %d", "%d", "%c");
 
-	printf("%d\n", b_printf("Hello %x terter", 120));
-	printf("%d\n", printf("Hello %x terter", 120));
-	printf("%d\n", b_printf("Hello %x terter", 12));
-	printf("%d\n", printf("Hello %x terter", 12));
-	printf("%d\n", b_printf("Hello %p terter", &b));
-	printf("%d\n", printf("Hello %p terter", &b));
+	// printf("%d\n", b_printf("Hello %x terter", 120));
+	// printf("%d\n", printf("Hello %x terter", 120));
+	// printf("%d\n", b_printf("Hello %x terter", 12));
+	// printf("%d\n", printf("Hello %x terter", 12));
+	// printf("%d\n", b_printf("Hello %p terter", &b));
+	// printf("%d\n", printf("Hello %p terter", &b));
 
-	printf("%d\n", b_printf("Hello %x terter", 74));
-	printf("%d\n", printf("Hello %x terter", 74));
+	// printf("%d\n", b_printf("Hello %x terter", 74));
+	// printf("%d\n", printf("Hello %x terter", 74));
 
 	// b_printf("Hello %  ");
 	// printf("Hello %  ");
