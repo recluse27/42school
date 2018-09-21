@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/19 20:08:28 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/20 17:27:10 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@ char	*ft_itoa(long long value, int base)
 	int			flag;
 	long long	tmp;
 
-	flag = 0;
 	size = 1;
 	tab = "0123456789abcdef";
-	if (base < 2 || base > 16)
-		return (0);
-	if (value < 0 && base == 10)
-		flag = 1;
+	flag = (value < 0 && base == 10) ? 1 : 0;
 	tmp = value;
 	while (tmp /= base)
 		size++;
@@ -47,32 +43,6 @@ char	*ft_itoa(long long value, int base)
 	}
 	return (str);
 }
-
-// char	*ft_itoa(intmax_t value, int base)
-// {
-// 	static char		basetab[] = "0123456789abcdef";
-// 	static char			str[65];
-// 	intmax_t		tmp;
-// 	char			*nstr;
-
-// 	nstr = &str[64];
-// 	tmp = value < 0 ? -value : value;
-// 	int i = 0;
-// 	while (i < 65)
-// 	{
-// 		str[i] = 0;
-// 		i++;
-// 	}
-// 	str[64] = '\0';
-// 	while (tmp)
-// 	{
-// 		*--nstr = basetab[tmp % base];
-// 		tmp = tmp / base;
-// 	}
-// 	if (value < 0 && base == 10)
-// 		*--nstr = '-';
-// 	return (nstr);
-// }
 
 int		b_printf(const char *format, ...)
 {
