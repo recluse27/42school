@@ -22,5 +22,14 @@ int		ft_abs(int nb);
 int		ft_strlen(char *str);
 char	*ft_itoa(long long value, int base);
 int		b_printf(const char *format, ...);
+int		conv_set(const char c, va_list arg);
+int		cnv_s(va_list arg);
+int		cnv_c(va_list arg);
+int		cnv_int(va_list arg);
+int		cnv_p(va_list arg);
+int		cnv_o(va_list arg);
+int		cnv_u(va_list arg);
+int		cnv_x(va_list arg);
+int		cnv_prc(va_list arg);
 
 #endif

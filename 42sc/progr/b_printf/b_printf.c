@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 19:20:58 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/20 17:27:10 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/22 15:19:28 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,104 @@ char	*ft_itoa(long long value, int base)
 	return (str);
 }
 
+int		conv_set(const char c, va_list arg)
+{
+	if (c == 'd' || c == 'i')
+		return (cnv_int(arg));
+	else if (c == 'c')
+		return (cnv_c(arg));
+	else if (c == 's')
+		return (cnv_s(arg));
+	else if (c == 'p')
+		return (cnv_p(arg));
+	else if (c == 'o')
+		return (cnv_o(arg));
+	else if (c == 'u')
+		return (cnv_u(arg));
+	else if (c == 'x')
+		return (cnv_x(arg));
+	else if (c == '%')
+		return (cnv_prc(arg));
+	return (0);
+}
+
+
+int		cnv_s(va_list arg)
+{
+	char	*str;
+
+	str = va_arg(arg, char *);
+	if (!str)
+		str = "(null)";
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
+
+int		cnv_c(va_list arg)
+{
+	ft_putchar(va_arg(arg, int));
+	return (1);
+}
+
+int		cnv_int(va_list arg)
+{
+	char	*str;
+
+	str = ft_itoa(va_arg(arg, int), 10);
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
+
+int		cnv_p(va_list arg)
+{
+	char	*str;
+
+	ft_putstr("0x");
+	str = ft_itoa((unsigned long)va_arg(arg, void *), 16);
+	ft_putstr(str);
+	return (ft_strlen(str) + 2);
+}
+
+int		cnv_o(va_list arg)
+{
+	char	*str;
+
+	str = ft_itoa(va_arg(arg, unsigned int), 8);
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
+
+int		cnv_u(va_list arg)
+{
+	char	*str;
+
+	str = ft_itoa(va_arg(arg, unsigned long), 10);
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
+
+int		cnv_x(va_list arg)
+{
+	char	*str;
+	str = ft_itoa(va_arg(arg, unsigned int), 16);
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
+
+int		cnv_prc(va_list arg)
+{
+	char	*str;
+
+	ft_putchar('%');
+	return (1);
+}
+
 int		b_printf(const char *format, ...)
 {
 	va_list		arg;
 	const char	*ch;
 	int			n;
-	char		*str;
+	//char		*str;
 
 	va_start(arg, format);
 	ch = format;
@@ -64,55 +156,56 @@ int		b_printf(const char *format, ...)
 		else
 		{
 			ch++;
-			if (*ch == 'c')
-			{
-				ft_putchar(va_arg(arg, int));
-				n++;
-			}
-			else if (*ch == 'd' || *ch == 'i')
-			{
-				str = ft_itoa(va_arg(arg, int), 10);
-				ft_putstr(str);
-				n += ft_strlen(str);
-			}
-			else if (*ch == 'o')
-			{
-				str = ft_itoa(va_arg(arg, unsigned int), 8);
-				ft_putstr(str);
-				n += ft_strlen(str);
-			}
-			else if (*ch == 's')
-			{
-				str = va_arg(arg, char *);
-				if (!str)
-					str = "(null)";
-				ft_putstr(str);
-				n += ft_strlen(str);
-			}
-			else if (*ch == 'x')
-			{
-				str = ft_itoa(va_arg(arg, unsigned int), 16);
-				ft_putstr(str);
-				n += ft_strlen(str);
-			}
-			else if (*ch == 'p')
-			{
-				ft_putstr("0x");
-				str = ft_itoa((unsigned long)va_arg(arg, void *), 16);
-				ft_putstr(str);
-				n += ft_strlen(str) + 2;
-			}
-			else if (*ch == 'u')
-			{
-				str = ft_itoa(va_arg(arg, unsigned long), 10);
-				n += ft_strlen(str);
-				ft_putstr(str);
-			}
-			else if (*ch == '%')
-			{
-				ft_putchar('%');
-				n++;
-			}
+			n += conv_set(*ch, arg);
+			// if (*ch == 'c')
+			// {
+			// 	ft_putchar(va_arg(arg, int));
+			// 	n++;
+			// }
+			// else if (*ch == 'd' || *ch == 'i')
+			// {
+			// 	str = ft_itoa(va_arg(arg, int), 10);
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str);
+			// }
+			// else if (*ch == 'o')
+			// {
+			// 	str = ft_itoa(va_arg(arg, unsigned int), 8);
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str);
+			// }
+			// else if (*ch == 's')
+			// {
+			// 	str = va_arg(arg, char *);
+			// 	if (!str)
+			// 		str = "(null)";
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str);
+			// }
+			// else if (*ch == 'x')
+			// {
+			// 	str = ft_itoa(va_arg(arg, unsigned int), 16);
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str);
+			// }
+			// else if (*ch == 'p')
+			// {
+			// 	ft_putstr("0x");
+			// 	str = ft_itoa((unsigned long)va_arg(arg, void *), 16);
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str) + 2;
+			// }
+			// else if (*ch == 'u')
+			// {
+			// 	str = ft_itoa(va_arg(arg, unsigned long), 10);
+			// 	ft_putstr(str);
+			// 	n += ft_strlen(str);
+			// }
+			// else if (*ch == '%')
+			// {
+			// 	ft_putchar('%');
+			// 	n++;
+			// }
 		}
 		ch++;
 	}
@@ -191,6 +284,8 @@ int		main(void)
 
 	// b_printf("Hello %x terter\n", NULL);
 	// printf("Hello %p terter\n", NULL);
+	b_printf("%s%s%s\n", "test", "test", "test");
+	// b_printf("%%%");
 
 	return (0);
 }
