@@ -30,6 +30,6 @@ int		cnv_p(va_list arg);
 int		cnv_o(va_list arg);
 int		cnv_u(va_list arg);
 int		cnv_x(va_list arg);
-int		cnv_prc(va_list arg);
+int		cnv_prc();
 
 #endif
