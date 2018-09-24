@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 11:15:06 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/20 12:27:51 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/24 15:42:16 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int		cnv_p(va_list arg);
 int		cnv_o(va_list arg);
 int		cnv_u(va_list arg);
 int		cnv_x(va_list arg);
-int		cnv_prc();
+int		cnv_prc(void);
 
 #endif

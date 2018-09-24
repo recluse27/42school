@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/23 14:33:31 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/23 14:34:35 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/24 15:40:48 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		cnv_p(va_list arg)
 	return (ft_strlen(str) + 2);
 }
 
-int		cnv_prc()
+int		cnv_prc(void)
 {
 	ft_putchar('%');
 	return (1);
