@@ -6,11 +6,11 @@
 #    By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 11:14:20 by vlazuka           #+#    #+#              #
-#    Updated: 2018/09/20 15:55:19 by vlazuka          ###   ########.fr        #
+#    Updated: 2018/09/25 19:47:16 by vlazuka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = b_printf.a
+NAME = libftprintf.a
 CC = gcc -c
 AR = ar rc
 CFLAGS = -Wall -Wextra -Werror
