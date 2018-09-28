@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/23 14:31:59 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/24 15:41:39 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/27 21:03:15 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		cnv_u(va_list arg)
 {
 	char	*str;
 
-	str = ft_itoa(va_arg(arg, unsigned long), 10);
+	str = ft_itoa(va_arg(arg, unsigned int), 10);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

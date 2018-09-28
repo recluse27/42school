@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/23 14:59:20 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/23 15:00:37 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/09/25 21:14:25 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,50 +15,50 @@
 
 int		main(void)
 {
-	// int c = 3;
-	// int b = -3;
-	// b_printf("Hello %d terter\n", 13);
-	// printf("Hello %d terter\n", 13);
-	// b_printf("Hello %d terter\n", -11);
-	// printf("Hello %d terter\n", -11);
+	int c = 3;
+	int b = -3;
+	b_printf("Hello %d terter\n", 13);
+	printf("Hello %d terter\n", 13);
+	b_printf("Hello %d terter\n", -11);
+	printf("Hello %d terter\n", -11);
 
-	// b_printf("Hello %i terter\n", 10);
-	// printf("Hello %i terter\n", 10);
-	// b_printf("Hello %i terter\n", -5);
-	// printf("Hello %i terter\n", -5);
+	b_printf("Hello %i terter\n", 10);
+	printf("Hello %i terter\n", 10);
+	b_printf("Hello %i terter\n", -5);
+	printf("Hello %i terter\n", -5);
 
-	// b_printf("Hello %s terter\n", "");
-	// printf("Hello %s terter\n", "");
-	// b_printf("Hello %s terter\n", "world");
-	// printf("Hello %s terter\n", "world");
+	b_printf("Hello %s terter\n", "");
+	printf("Hello %s terter\n", "");
+	b_printf("Hello %s terter\n", "world");
+	printf("Hello %s terter\n", "world");
 
-	// b_printf("Hello %c terter\n", 'a');
-	// printf("Hello %c terter\n", 'a');
-	// b_printf("Hello %c terter\n", 33);
-	// printf("Hello %c terter\n", 33);
+	b_printf("Hello %c terter\n", 'a');
+	printf("Hello %c terter\n", 'a');
+	b_printf("Hello %c terter\n", 33);
+	printf("Hello %c terter\n", 33);
 
-	// b_printf("Hello %o terter\n", 1);
-	// printf("Hello %o terter\n", 1);
-	// b_printf("Hello %o terter\n", 100);
-	// printf("Hello %o terter\n", 100);
+	b_printf("Hello %o terter\n", 1);
+	printf("Hello %o terter\n", 1);
+	b_printf("Hello %o terter\n", 100);
+	printf("Hello %o terter\n", 100);
 
-	// b_printf("Hello %u terter\n", 1);
-	// printf("Hello %u terter\n", 1);
-	// b_printf("Hello %u terter\n", -1);
-	// printf("Hello %u terter\n", -1);
+	b_printf("Hello %u terter\n", 1);
+	printf("Hello %u terter\n", 1);
+	b_printf("Hello %u terter\n", -1);
+	printf("Hello %u terter\n", -1);
 
-	// b_printf("Hello %p terter\n", &c);
-	// printf("Hello %p terter\n", &c);
-	// b_printf("Hello %p terter\n", &b);
-	// printf("Hello %p terter\n", &b);
+	b_printf("Hello %p terter\n", &c);
+	printf("Hello %p terter\n", &c);
+	b_printf("Hello %p terter\n", &b);
+	printf("Hello %p terter\n", &b);
 
-	// b_printf("Hello %x terter\n", 13);
-	// printf("Hello %x terter\n", 13);
-	// b_printf("Hello %x terter\n", -3);
-	// printf("Hello %x terter\n", -3);
+	b_printf("Hello %x terter\n", 13);
+	printf("Hello %x terter\n", 13);
+	b_printf("Hello %x terter\n", -3);
+	printf("Hello %x terter\n", -3);
 
-	// b_printf("Hello % % terter\n");
-	// printf("Hello % % terter\n");
+	b_printf("Hello % % terter\n");
+	printf("Hello % % terter\n");
 
 	// printf("HALLO");
 	// printf("%d", "%d");
@@ -112,8 +112,20 @@ int		main(void)
 	// printf(" == %s%s\n", "test", "test");
 	// b_printf("%s%s%s", "test", "test", "test");
 	// printf(" == %s%s%s\n", "test", "test", "test");
-	b_printf("%s HALO %s", NULL, "KEK");
-	printf(" == %s HALO %s", NULL, "KEK");
+	// b_printf("%s HALO %s", NULL, "KEK");
+	// printf(" == %s HALO %s", NULL, "KEK");
+	b_printf("%d %d %i %i\n", -2147483648, 2147483647, -2147483649, 2147483648);
+	printf("%d %d %i %i\n", -2147483648, 2147483647, -2147483649, 2147483648);
+	b_printf("%u %u %u %u\n", 0, 4294967295, -1, 429496729701);
+	printf("%u %u %u %u\n", 0, 4294967295, -1, 429496729701);
+	b_printf("%x %x %x %x\n", 0, 4294967295, -1, 4294967296);
+	printf("%x %x %x %x\n", 0, 4294967295, -1, 4294967296);
+	b_printf("%o %o %o %o\n", 0, 4294967295, -1, 4294967296);
+	printf("%o %o %o %o\n", 0, 4294967295, -1, 4294967296);
+	b_printf("%c %c %c %c\n", -127, 127, -255, 255);
+	printf("%c %c %c %c\n", -127, 127, -255, 255);
+	b_printf("%p %p %p\n", &c, &b, NULL);
+	printf("%p %p %p\n", &c, &b, NULL);
 
 	return (0);	
 }
