@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 15:46:19 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 15:47:01 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	int i;
+	int j;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
+	i = 0;
+	j = 0;
+	if (to_find[0] == '\0')
+		return ((char*)str);
+	while (str[i] && i < (int)n)
 	{
-		res = res * 10 + neg * (*s++ - 48);
+		while (str[i + j] == to_find[j] && i + j < (int)n)
+		{
+			if (to_find[j + 1] == '\0')
+				return ((char*)&str[i]);
+			j++;
+		}
+		i++;
+		j = 0;
 	}
-	return ((int)res);
+	return (NULL);
+}

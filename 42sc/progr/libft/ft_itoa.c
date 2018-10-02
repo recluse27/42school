@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:28:07 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:28:28 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_itoa(int n)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	int				sign;
+	int				ten;
+	char			*str;
+	unsigned int	n2;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
+	ten = n < 0 ? 1 : 0;
+	n2 = n;
+	if ((sign = n) < 0)
+		n2 = -n;
+	while (n >= 9 || n <= -9)
 	{
-		res = res * 10 + neg * (*s++ - 48);
+		ten++;
+		n = n / 10;
 	}
-	return ((int)res);
+	if (!(str = (char *)malloc(sizeof(char) * (ten + 2))))
+		return (NULL);
+	str[ten + 1] = '\0';
+	while (ten > -1)
+	{
+		str[ten--] = (n2 % 10) + '0';
+		n2 = n2 / 10;
+	}
+	str[0] = sign < 0 ? '-' : str[0];
+	return (str);
+}

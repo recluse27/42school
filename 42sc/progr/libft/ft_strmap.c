@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 22:25:23 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/10 22:25:28 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:07:00 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:10:34 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
-size_t	ft_strlen(const char *str)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	size_t i;
+	int		i;
+	char	*res;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (s != NULL)
+	{
+		if (NULL == (res = ft_memalloc(ft_strlen(s) + 1)))
+			return (NULL);
+		while (s[i])
+		{
+			res[i] = f(s[i]);
+			i++;
+		}
+		res[i] = '\0';
+		return (res);
+	}
+	return (NULL);
 }

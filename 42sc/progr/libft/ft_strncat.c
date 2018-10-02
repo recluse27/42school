@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 15:05:31 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 15:05:52 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strncat(char *dest, const char *src, size_t n)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	int	i;
+	int	j;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
+	j = 0;
+	i = 0;
+	while (dest[i])
+		i++;
+	while (j < (int)n && src[j])
 	{
-		res = res * 10 + neg * (*s++ - 48);
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	return ((int)res);
+	dest[i] = '\0';
+	return (dest);
+}

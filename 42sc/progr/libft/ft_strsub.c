@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:18:02 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:18:52 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	char	*res;
+	int		i;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
+	i = 0;
+	if (NULL != (res = ft_strnew(len)) && s != NULL)
 	{
-		res = res * 10 + neg * (*s++ - 48);
+		while (s[start] && len--)
+			res[i++] = s[start++];
+		if (res != NULL)
+			return (res);
 	}
-	return ((int)res);
+	return (NULL);
+}

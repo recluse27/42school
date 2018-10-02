@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 16:18:39 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 16:21:26 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
-	{
-		res = res * 10 + neg * (*s++ - 48);
-	}
-	return ((int)res);
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	while (n--)
+		if (*ps1++ != *ps2++)
+			return (*--ps1 - *--ps2);
+	return (0);
+}

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:23:00 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:23:02 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strtrim(char const *s)
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	unsigned int		start;
+	int					end;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
-	{
-		res = res * 10 + neg * (*s++ - 48);
-	}
-	return ((int)res);
+	start = 0;
+	if (s == NULL)
+		return (NULL);
+	end = (int)ft_strlen(s) - 1;
+	while ((s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
+			&& s[start])
+		start++;
+	while ((s[end] == ' ' || s[end] == '\n' || s[end] == '\t')
+			&& end > (int)start)
+		end--;
+	return (ft_strsub(s, start, end - start + 1));
+}

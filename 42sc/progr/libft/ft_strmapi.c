@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:55:18 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:11:19 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:11:21 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int long	res;
-	int			neg;
-	const char	*s;
+	unsigned int	i;
+	char			*res;
 
-	s = str;
-	while (*s && ft_isspace(*s))
-		s++;
-	neg = 1;
-	if (*s == '+' || *s == '-')
-		if (*s++ == '-')
-			neg = -1;
-	res = 0;
-	while (*s >= '0' && *s <= '9')
+	i = 0;
+	if (s != NULL)
 	{
-		res = res * 10 + neg * (*s++ - 48);
+		if (NULL == (res = ft_memalloc(ft_strlen(s) + 1)))
+			return (NULL);
+		while (s[i])
+		{
+			res[i] = f(i, s[i]);
+			i++;
+		}
+		res[i] = '\0';
+		return (res);
 	}
-	return ((int)res);
+	return (NULL);
+}
