@@ -14,18 +14,20 @@
 
 char	*ft_strtrim(char const *s)
 {
-	unsigned int		start;
-	int					end;
+	size_t	st;
+	size_t	end;
 
-	start = 0;
-	if (s == NULL)
+	st = 0;
+	if (!s)
 		return (NULL);
-	end = (int)ft_strlen(s) - 1;
-	while ((s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
-			&& s[start])
-		start++;
-	while ((s[end] == ' ' || s[end] == '\n' || s[end] == '\t')
-			&& end > (int)start)
+	end = ft_strlen(s);
+	while (s[st] != '\0' && ft_isspace(s[st]))
+		st++;
+	if (s[st] == '\0')
+		return (ft_strdup(s + st));
+	while (s[end - 1] && ft_isspace(s[end - 1]))
 		end--;
-	return (ft_strsub(s, start, end - start + 1));
+	if (ft_strsub(s, st, end - st))
+		return (ft_strsub(s, st, end - st));
+	return (0);
 }

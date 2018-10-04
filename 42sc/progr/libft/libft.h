@@ -25,5 +25,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isdigit(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+char	*ft_strtrim(char const *s);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
 
 #endif
