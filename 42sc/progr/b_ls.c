@@ -23,6 +23,25 @@ int T = 0;
 
 #endif
 
+int ft_strlen(const char *str)
+{
+	int i = 0;
+	while(str[i])
+		i++;
+	return i;
+}
+
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
+
 int flags(char **argv)
 {
 	int i = 1;
@@ -47,19 +66,9 @@ int flags(char **argv)
 			}
 		}
 		if(argv[i][0] != '-')
-			end = 1;
-		if(end == 1)
 			return i;
 		i++;
 	}
-	return i;
-}
-
-int ft_strlen(char *str)
-{
-	int i = 0;
-	while(str[i])
-		i++;
 	return i;
 }
 
@@ -114,14 +123,6 @@ node *insertend(node *head, struct dirent *sd, struct stat buf)
 	newnode->next = NULL;
 	head->next = newnode;
 	return tmp;
-}
-
-int ft_strcmp(char *str1, char *str2)
-{
-	int i = 0;
-	while(str1[i] == str2[i] && str1[i] && str2[i])
-		i++;
-	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }
 
 void swapdata(node *dest, node *src)
