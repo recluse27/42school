@@ -39,40 +39,83 @@
 
 // 	return (0);
 // }
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <sys/types.h> 
-#include <dirent.h> 
-  
-int main(void) 
-{ 
-	char *curr_dir = NULL; 
-	DIR *dp = NULL; 
-	struct dirent *dptr = NULL; 
-	unsigned int count = 0; 
 
-	curr_dir = getenv("PWD"); 
-	if(NULL == curr_dir) 
-	{ 
-		printf("\n ERROR : Could not get the working directory\n"); 
-		return (-1); 
-	} 
+typedef struct	s_args
+{
+	int			l;
+	int			a;
+	int			r;
+	int			t;
 
-	dp = opendir((const char*)curr_dir);
-	if (NULL == dp)
+	int			R;
+	int			u;
+	int			f;
+	int			g;
+	int			d;
+}				t_args;
+
+#define INIT_ARGS(x) t_args x = {.l = 0, .a = 0, .r = 0, .t = 0}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+void	parse(int n, char *arr[])
+{
+	int i;
+	int j;
+
+	t_args *flags;
+
+	flags->l = 0;
+	flags->a = 0;
+	flags->r = 0;
+	flags->t = 0;
+	
+	i = 0;
+	if (arr[1][0] != '-')
+		printf("%s\n", "WHERE IS '-' ???");
+	else
 	{
-		printf("\n ERROR : Could not open the working directory\n");
+		while (arr[1][i] != '\0')
+		{
+			t_args->;
+			i++;
+		} 
+	}
+}
+
+int		main(int argc, char *argv[])
+{
+	char *curr_dir = NULL;
+	DIR *dp = NULL;
+	struct dirent *dptr = NULL;
+	unsigned int count = 0;
+
+	curr_dir = getenv("PWD");
+	if (argc == 3)
+	{
+		parse(argc - 1, argv);
+	}
+	if (!curr_dir)
+	{
+		printf("\n ERROR: Could not get the working directory\n");
 		return (-1);
 	}
-
-	printf("\n"); 
-	for (count = 0; NULL != (dptr = readdir(dp)); count++) 
-	{ 
-		// Check if the name of the file/folder begins with '.' 
-		// If yes, then do not display it. 
-		if(dptr->d_name[0] != '.') 
-			printf("%s  ",dptr->d_name); 
+	dp = opendir((const char*)curr_dir);
+	if (!dp)
+	{
+		printf("\n ERROR: Could not open the working directory\n");
+		return (-1);
+	}
+	//printf("\n");
+	while ((dptr = readdir(dp)) != NULL)
+	{
+		if(dptr->d_name[0] != '.')
+			printf("%s  ", dptr->d_name);
+		count++;
 	}
 
-	return (0); 
+	return (0);
 }
