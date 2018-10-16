@@ -21,33 +21,26 @@
 # include <dirent.h>
 # include <stdlib.h>
 
-// typedef struct tmp
+// typedef struct		s_file
 // {
-// 	struct dirent sd;
-// 	struct stat buf;
-// 	struct tmp *next;
-// }		node;
+// 	char			*name;
+// 	char			*path;
+// 	char			*buff;
+// 	struct s_file	*next;
+// }					t_file;
 
-typedef struct		s_file
+typedef struct tmp
 {
-	char			*name;
-	char			*path;
-	char			*buff;
-	struct s_file	*next;
-}					t_file;
+	struct dirent sd;
+	struct stat buf;
+	struct tmp *next;
+}		node;
 
 int A = 0;
 int L = 0;
 int R = 0;
 int T = 0;
-char *dirpath = '.';
-
-# define O_FORMAT	options[0]
-# define O_SORT		options[1]
-# define O_FILES	options[2]
-# define O_RECURS	options[3]
-# define O_COLORS	options[4]
-# define O_REVERS	options[5]
+// char *dirpath = ".";
 
 #endif
 
@@ -69,18 +62,45 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
+int flags(char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while(argv[i])
+	{
+		j = 0;
+		if(argv[i][0] == '-')
+		{
+			while(argv[i][j])
+			{
+				if(argv[i][j] == 'a')
+					A = 1;
+				if(argv[i][j] == 'l')
+					L = 1;
+				if(argv[i][j] == 'r')
+					R = 1;
+				if(argv[i][j] == 't')
+					T = 1;
+				j++;
+			}
+		}
+		i++;
+	}
+	return i;
+}
+
 void b_ls(int i, char **argv)
 {
 	struct stat buf;
 	struct dirent *sd = NULL;
 	node *head;
 	long long int blocks = 0;
-	char *dirpath;
+	// char *dirpath;
 	DIR *dir;
 
-	if(argv[i] == NULL)
-		dirpath = ".";
-	else
+	if(!argv[i])
 		dirpath = argv[i];
 	if((dir = opendir(dirpath)) == NULL)
 	{

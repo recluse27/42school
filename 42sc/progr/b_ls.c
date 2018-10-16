@@ -20,10 +20,11 @@ int A = 0;
 int L = 0;
 int R = 0;
 int T = 0;
+// char *dirpath = ".";
 
 #endif
 
-int ft_strlen(const char *str)
+int		strlen(const char *str)
 {
 	int i = 0;
 	while(str[i])
@@ -41,16 +42,16 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-
 int flags(char **argv)
 {
-	int i = 1;
+	int i;
 	int j;
-	int end = 0;
+
+	i = 1;
 	while(argv[i])
 	{
 		j = 0;
-		if(argv[i][0] == '-' && end != 1)
+		if(argv[i][0] == '-')
 		{
 			while(argv[i][j])
 			{
@@ -65,8 +66,6 @@ int flags(char **argv)
 				j++;
 			}
 		}
-		if(argv[i][0] != '-')
-			return i;
 		i++;
 	}
 	return i;
@@ -230,14 +229,14 @@ void printer(node *head, char *dirpath)
 			lstat(getpath(dirpath, head->sd.d_name), &buf);
 			modeprint(buf.st_mode);
 			printf("%i ", buf.st_nlink);
-      		printf("%s ", getpwuid(buf.st_uid)->pw_name);
-      		printf("%s ", getgrgid(buf.st_gid)->gr_name);
-      		printf("%lld\t", buf.st_size);
-      		timeconverter(ctime(&buf.st_mtime));
-      		printf(" ");
-    	}
-   	 	printf("%s", head->sd.d_name);
-    	printf("\t");
+			printf("%s ", getpwuid(buf.st_uid)->pw_name);
+			printf("%s ", getgrgid(buf.st_gid)->gr_name);
+			printf("%lld\t", buf.st_size);
+			timeconverter(ctime(&buf.st_mtime));
+			printf(" ");
+		}
+		printf("%s", head->sd.d_name);
+		printf("\t");
 	}
 }
 
@@ -247,16 +246,17 @@ void b_ls(int i, char **argv)
 	struct dirent *sd = NULL;
 	node *head;
 	long long int blocks = 0;
-	char *dirpath;
+	// char *dirpath;
 	DIR *dir;
 
-	if(argv[i] == NULL)
-		dirpath = ".";
-	else
+	// if(argv[i] == NULL)
+	// 	dirpath = ".";
+	// else
+	if(argv[i] != NULL)
 		dirpath = argv[i];
 	if((dir = opendir(dirpath)) == NULL)
 	{
-		printf("b_ls: %s: No Such a file or directory.", argv[i]);
+		printf("b_ls: %s: No such file or directory", argv[i]);
 		return ;
 	}
 	if(L == 1)
@@ -292,7 +292,7 @@ void b_ls(int i, char **argv)
 int main(int argc, char **argv)
 {
 	int i;
-   
+
 	i = flags(argv);
 	if(argc && argv[i] == NULL)
 		b_ls(i, argv);
