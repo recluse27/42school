@@ -61,32 +61,70 @@ typedef struct	s_args
 #include <sys/types.h>
 #include <dirent.h>
 
-void	parse(int n, char *arr[])
-{
-	int i;
-	int j;
+// void	parse(int n, char *arr[])
+// {
+// 	int i;
+// 	int j;
 
-	t_args *flags;
+// 	t_args *flags;
 
-	flags->l = 0;
-	flags->a = 0;
-	flags->r = 0;
-	flags->t = 0;
+// 	flags->l = 0;
+// 	flags->a = 0;
+// 	flags->r = 0;
+// 	flags->t = 0;
 	
-	i = 0;
-	if (arr[1][0] != '-')
-		printf("%s\n", "WHERE IS '-' ???");
-	else
-	{
-		while (arr[1][i] != '\0')
-		{
-			t_args->;
-			i++;
-		} 
-	}
-}
+// 	i = 0;
+// 	if (arr[1][0] != '-')
+// 		printf("%s\n", "WHERE IS '-' ???");
+// 	else
+// 	{
+// 		while (arr[1][i] != '\0')
+// 		{
+// 			t_args->;
+// 			i++;
+// 		} 
+// 	}
+// }
 
-int		main(int argc, char *argv[])
+// int		main(int argc, char *argv[])
+// {
+// 	char *curr_dir = NULL;
+// 	DIR *dp = NULL;
+// 	struct dirent *dptr = NULL;
+// 	unsigned int count = 0;
+
+// 	curr_dir = getenv("PWD");
+// 	if (argc == 3)
+// 	{
+// 		parse(argc - 1, argv);
+// 	}
+// 	if (!curr_dir)
+// 	{
+// 		printf("\n ERROR: Could not get the working directory\n");
+// 		return (-1);
+// 	}
+// 	dp = opendir((const char*)curr_dir);
+// 	if (!dp)
+// 	{
+// 		printf("\n ERROR: Could not open the working directory\n");
+// 		return (-1);
+// 	}
+// 	//printf("\n");
+// 	while ((dptr = readdir(dp)) != NULL)
+// 	{
+// 		if(dptr->d_name[0] != '.')
+// 			printf("%s  ", dptr->d_name);
+// 		count++;
+// 	}
+// 	return (0);
+// }
+
+#include<stdio.h>
+#include<stdlib.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+int main(void)
 {
 	char *curr_dir = NULL;
 	DIR *dp = NULL;
@@ -94,28 +132,27 @@ int		main(int argc, char *argv[])
 	unsigned int count = 0;
 
 	curr_dir = getenv("PWD");
-	if (argc == 3)
+	if(NULL == curr_dir)
 	{
-		parse(argc - 1, argv);
+		printf("\n ERROR : Could not get the working directory\n");
+		return -1;
 	}
-	if (!curr_dir)
-	{
-		printf("\n ERROR: Could not get the working directory\n");
-		return (-1);
-	}
+
 	dp = opendir((const char*)curr_dir);
-	if (!dp)
+	if(NULL == dp)
 	{
-		printf("\n ERROR: Could not open the working directory\n");
-		return (-1);
+		printf("\n ERROR : Could not open the working directory\n");
+		return -1;
 	}
-	//printf("\n");
+	// for(count = 0; NULL != (dptr = readdir(dp)); count++)
 	while ((dptr = readdir(dp)) != NULL)
 	{
+		// Check if the name of the file/folder begins with '.'
+		// If yes, then do not display it.
 		if(dptr->d_name[0] != '.')
-			printf("%s  ", dptr->d_name);
+			printf("%s  ",dptr->d_name);
 		count++;
 	}
 
-	return (0);
+	return 0;
 }

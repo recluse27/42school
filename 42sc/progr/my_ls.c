@@ -140,7 +140,7 @@ void b_ls(int i, char **argv)
 int main(int argc, char *argv[])
 {
 	int i;
-   
+
 	i = flags(argv);
 	if(argc && argv[i] == NULL)
 		b_ls(i, argv);
