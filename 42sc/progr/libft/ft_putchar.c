@@ -14,8 +14,5 @@
 
 void	ft_putchar(char c)
 {
-	unsigned char	b;
-
-	b = (unsigned char)c;
-	write(1, &b, 1);
+	write(1, &c, 1);
 }

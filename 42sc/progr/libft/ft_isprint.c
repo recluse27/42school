@@ -6,11 +6,13 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 23:18:08 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/12 23:23:22 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/10/23 02:49:59 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		isprint(int c)
+#include "libft.h"
+
+int		ft_isprint(int c)
 {
 	if (c > 31 && c < 127)
 		return (1);

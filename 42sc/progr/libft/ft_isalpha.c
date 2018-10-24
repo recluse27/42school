@@ -6,11 +6,13 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 22:55:19 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/12 22:58:01 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/10/23 02:07:29 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		isalpha(int c)
+#include "libft.h"
+
+int		ft_isalpha(int c)
 {
 	if ((c > 64 && c < 91) || (c > 96 && c < 123))
 		return (1);

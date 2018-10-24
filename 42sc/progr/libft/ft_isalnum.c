@@ -6,11 +6,13 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 23:01:11 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/09/12 23:02:35 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/10/23 02:49:23 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		isalnum(int c)
+#include "libft.h"
+
+int		ft_isalnum(int c)
 {
 	if (ft_isdigit(c) || ft_isalpha(c))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 14:49:37 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/10/01 15:05:14 by vlazuka          ###   ########.fr       */
+/*   Updated: 2018/10/23 02:02:12 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_strcat(char *dest, const char *src)
 	j = 0;
 	while (dest[i])
 		i++;
-	while (stc[j])
+	while (src[j])
 	{
 		dest[i] = src[j];
 		i++;
 		j++;
 	}
 	dest[i] = '\0';
-	return (dest)
+	return (dest);
 }
