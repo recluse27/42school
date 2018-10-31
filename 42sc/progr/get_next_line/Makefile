@@ -11,14 +11,17 @@
 # **************************************************************************** #
 
 NAME = get_next_line
-CFLAG = -Wall -Werror -Wextra
-SOURCE = *.c
+CC = gcc -c
+AR = ar rc
+CFLAGS = -Wall -Werror -Wextra
+HEADER = get_next_line.h
+SRC = *.c
 
 all : $(NAME)
 
 $(NAME) :
 		make -C Libft
-		gcc -o $(NAME) $(CFLAG) $(SOURCE) -LLibft -lft -I get_next_line.h
+		gcc -o $(NAME) $(CFLAGS) $(SRC) -LLibft -lft -I $(HEADER)
 
 clean :
 		make clean -C Libft
