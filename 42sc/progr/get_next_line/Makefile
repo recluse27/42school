@@ -17,11 +17,13 @@ CFLAGS = -Wall -Werror -Wextra
 HEADER = get_next_line.h
 SRC = *.c
 
+OBJ=$(SRC:.c=.o)
+
 all : $(NAME)
 
 $(NAME) :
 		make -C Libft
-		gcc -o $(NAME) $(CFLAGS) $(SRC) -LLibft -lft -I $(HEADER)
+		@$(CC) -o $(NAME) $(CFLAGS) $(SRC) -LLibft -lft -I $(HEADER)
 
 clean :
 		make clean -C Libft
