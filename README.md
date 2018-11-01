@@ -1,1 +1,2 @@
-# 42school
+# 42 Silicon Valley projects
+# Fremont, CA
