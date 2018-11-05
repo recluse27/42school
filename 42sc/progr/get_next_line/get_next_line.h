@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 42
-# define MAX_FD 255
+#define OPEN_MAX 255
+#define BUFF_SIZE 10
 //# define MALLCHECK(x) if (!x) return (-1);
 
 int		get_next_line(const int fd, char **line);

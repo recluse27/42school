@@ -12,56 +12,56 @@
 
 #include "get_next_line.h"
 
-int new_line(char **line, char **text, int fd, int num_read_char)
+static int prepare_line(char **s, char **line, int fd)
 {
-  int len;
-  char *tmp;
+	char	*cursor;
+	char	*tmp;
+	int		nbr_char;
 
-  len = 0;
-  while (text[fd][len] != '\n' && text[fd][len] != '\0')
-    len++;
-  if (text[fd][len] == '\n')
-  {
-    *line = ft_strsub(text[fd], 0, len);
-    tmp = ft_strdup(text[fd] + len + 1);
-    free(text[fd]);
-    text[fd] = tmp;
-    if (text[fd][0] == '\0')
-			ft_strdel(&text[fd]);
-  }
-  else if (text[fd][len] == '\0')
-  {
-    if (num_read_char == BUFF_SIZE)
-      return (get_next_line(fd, line));
-  *line = ft_strdup(text[fd]);
-    ft_strdel(&text[fd]);
-  }
-    return (1);
+	cursor = ft_strchr(s[fd], '\n');
+	nbr_char = cursor - s[fd];
+	if (cursor == 0)
+	{
+		*line = ft_strdup(s[fd]);
+		ft_strdel(&s[fd]);
+	}
+	else if (cursor)
+	{
+		*line = ft_strsub(s[fd], 0, nbr_char);
+		tmp = ft_strdup(s[fd] + nbr_char + 1);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (!(s[fd][0]))
+			ft_strdel(&s[fd]);
+	}
+	return (1);
 }
 
 int get_next_line(const int fd, char **line)
 {
-   char         buf[BUFF_SIZE + 1];
-   static char  *text[MAX_FD];
-   char         *tmp;
-   int          num_read_char;
+	int			byte;
+	char		buff[BUFF_SIZE + 1];
+	static char *s[OPEN_MAX];
+	char		*tmp;
 
-   if (fd < 0 || line == NULL)
-      return (-1);
-   while ((num_read_char = read(fd, buf, BUFF_SIZE)) > 0)
-  {
-    buf[num_read_char] = '\0';
-     if (text[fd] == NULL)
-          text[fd] = ft_strnew(1);
-      tmp = ft_strjoin(text[fd], buf);
-      free(text[fd]);
-      text[fd] = tmp;
-       if (ft_strchr(buf, '\n'))
-        break ;
-    }
-    if (num_read_char < 0)
-      return (-1);
-    else if (num_read_char == 0 && (text[fd] == NULL || text[fd][0] == '\0'))
-      return (0);
-    return(new_line(line, text, fd, num_read_char));
+	if ((fd > 255) || (fd < 0) || !(line))
+		return (-1);
+	while ((byte = read(fd, buff, BUFF_SIZE)) > 0)
+	{
+		buff[byte] = '\0';
+		if (!(s[fd]))
+			s[fd] = ft_strnew(0);
+		if((tmp = ft_strjoin(s[fd], buff)) == NULL)
+			return (-1);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (ft_strchr(buff, '\n'))
+			break ;
+	}
+	if (byte < 0)
+		return (-1);
+	else if ((byte == 0) && !(s[fd]))
+		return (0);
+	else
+		return (prepare_line(s, line, fd));
 }
