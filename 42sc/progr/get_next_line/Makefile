@@ -10,27 +10,47 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = get_next_line
-CC = gcc -c
-AR = ar rc
-CFLAGS = -Wall -Werror -Wextra
-HEADER = get_next_line.h
-SRC = *.c
+# NAME = get_next_line
+# CC = gcc -c
+# AR = ar rc
+# CFLAGS = -Wall -Werror -Wextra
+# HEADER = get_next_line.h
+# SRC = *.c
 
-OBJ=$(SRC:.c=.o)
+# OBJ=$(SRC:.c=.o)
+
+# all : $(NAME)
+
+# $(NAME) :
+# 		make -C libft
+# 		@$(CC) -o $(NAME) $(CFLAGS) $(SRC) -LLibft -lft -I $(HEADER)
+
+# clean :
+# 		make clean -C libft
+# 		/bin/rm -f *~
+
+# fclean : clean
+# 		make fclean -C libft
+# 		/bin/rm -f $(NAME)
+
+# re : fclean all
+NAME = get_next_line
+CFLAG = -Wall -Werror -Wextra
+HEADER = get_next_line.h
+SOURCE = *.c
 
 all : $(NAME)
 
 $(NAME) :
-		make -C Libft
-		@$(CC) -o $(NAME) $(CFLAGS) $(SRC) -LLibft -lft -I $(HEADER)
+		make -C libft
+		gcc -o $(NAME) $(CFLAG) $(SOURCE) -Llibft -lft -I $(HEADER)
 
 clean :
-		make clean -C Libft
+		make clean -C libft
 		/bin/rm -f *~
 
 fclean : clean
-		make fclean -C Libft
+		make fclean -C libft
 		/bin/rm -f $(NAME)
 
 re : fclean all
