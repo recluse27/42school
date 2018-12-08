@@ -1,0 +1,9 @@
+#!/bin/sh
+#echo "42 school is a Charm!"
+
+print_date()
+{
+echo "Today is `date +"%A %d %B %Y (%r)"`"
+return
+}
+print_date

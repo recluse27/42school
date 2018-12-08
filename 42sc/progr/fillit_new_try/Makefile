@@ -1,33 +1,43 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/20 11:14:20 by vlazuka           #+#    #+#              #
-#    Updated: 2018/09/23 16:38:01 by vlazuka          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+OBJECTS = *.o\
+			libft/*.o
+			
+SRC = libft/*.c\
+		src/error.c\
+		src/main.c\
+		src/list.c\
+		src/algorithm.c\
+		src/tetriminos.c\
+		src/helper_functions.c\
+		src/map.c
 
-NAME = b_ls.a
-CC = gcc -c
-AR = ar rc
-CFLAGS = -Wall -Wextra -Werror
-HEADER = ls.h
-SRC = *.c
-
-OBJ=$(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror 
+NAME = fillit
+LIB = libft/libft.a
 
 all: $(NAME)
 
 $(NAME):
-				$(CC) $(CFLAGS) $(SRC) -I $(HEADER)
+	make -C libft/
+	gcc $(FLAGS) $(SRC) -o $(NAME) $(LIB)
+
+sanitize:
+	gcc $(FLAGS) $(SRC) -o $(NAME) -g
+
+lldb:
+	gcc -g $(SRC) $(LIB)
+
+cleanlldb:
+	rm $(NAME)
+	rm -r $(NAME).dSYM
+
+runlldb:
+	lldb ./a.out
 
 clean:
-				@rm -f $(OBJ)
+	rm -f $(OBJECTS)
 
 fclean: clean
-				@rm -f $(NAME)
+	rm -f $(LIB)
+	rm -f $(NAME)
 
 re: fclean all

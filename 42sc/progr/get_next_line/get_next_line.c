@@ -12,56 +12,54 @@
 
 #include "get_next_line.h"
 
-static int prepare_line(char **s, char **line, int fd)
+int				check_line(char **str, char **line, int fd, int num)
 {
-	char	*cursor;
-	char	*tmp;
-	int		nbr_char;
+	char		*tmp;
+	int			len;
 
-	cursor = ft_strchr(s[fd], '\n');
-	nbr_char = cursor - s[fd];
-	if (cursor == 0)
+	len = 0;
+	while (str[fd][len] != '\0' && str[fd][len] != '\n')
+		len++;
+	if (str[fd][len] == '\n')
 	{
-		*line = ft_strdup(s[fd]);
-		ft_strdel(&s[fd]);
+		tmp = ft_strdup(str[fd] + len + 1);
+		*line = ft_strsub(str[fd], 0, len);
+		free(str[fd]);
+		str[fd] = tmp;
 	}
-	else if (cursor)
+	else if (str[fd][len] == '\0')
 	{
-		*line = ft_strsub(s[fd], 0, nbr_char);
-		tmp = ft_strdup(s[fd] + nbr_char + 1);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (!(s[fd][0]))
-			ft_strdel(&s[fd]);
+		if (num == BUFF_SIZE)
+			return (get_next_line(fd, line));
+		*line = ft_strdup(str[fd]);
+		ft_strdel(&str[fd]);
 	}
 	return (1);
 }
 
-int get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	int			byte;
+	int			num;
+	static char	*str[4864];
 	char		buff[BUFF_SIZE + 1];
-	static char *s[OPEN_MAX];
 	char		*tmp;
 
-	if ((fd > 255) || (fd < 0) || !(line))
+	if (fd < 0 || !line || read(fd, buff, 0) < 0)
 		return (-1);
-	while ((byte = read(fd, buff, BUFF_SIZE)) > 0)
+	while ((num = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		buff[byte] = '\0';
-		if (!(s[fd]))
-			s[fd] = ft_strnew(0);
-		if((tmp = ft_strjoin(s[fd], buff)) == NULL)
-			return (-1);
-		free(s[fd]);
-		s[fd] = tmp;
+		if (!str[fd])
+			str[fd] = ft_strnew(1);
+		buff[num] = '\0';
+		tmp = ft_strjoin(str[fd], buff);
+		free(str[fd]);
+		str[fd] = tmp;
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
-	if (byte < 0)
-		return (-1);
-	else if ((byte == 0) && !(s[fd]))
+	if (num == 0 && (!str[fd] || str[fd][0] == '\0'))
 		return (0);
-	else
-		return (prepare_line(s, line, fd));
+	if (num < 0)
+		return (-1);
+	return (check_line(str, line, fd, num));
 }

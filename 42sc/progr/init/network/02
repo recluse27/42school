@@ -1,0 +1,2 @@
+ifconfig en0 | grep "inet " | awk '{ print $6 }'
+ifconfig en0 | grep "inet " | awk '{ print $2 }'
