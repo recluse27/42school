@@ -1,0 +1,7 @@
+Credentials cache: API:34824
+        Principal: vlazuka@42.US.ORG
+
+  Issued                Expires               Principal
+Jul 23 11:38:59 2018  Jul 23 21:38:59 2018  krbtgt/42.US.ORG@42.US.ORG
+Jul 23 11:39:02 2018  Jul 23 21:38:59 2018  ldap/ldap-proxy.42.us.org@42.US.ORG
+Jul 23 11:58:52 2018  Jul 23 21:38:59 2018  host/vgs-fn1.42.us.org@42.US.ORG

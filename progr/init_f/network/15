@@ -1,0 +1,1 @@
+Add to the end of the file with DNS entries the line 'echo "46.19.122.85 intra.42.fr" >> /etc/hosts'

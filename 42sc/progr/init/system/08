@@ -1,1 +1,0 @@
-The result of the command 'cat /etc/ssh/sshd_config | grep AuthorizedKeysFile' is '.ssh/authorized_keys'

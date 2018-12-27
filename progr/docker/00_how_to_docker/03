@@ -1,0 +1,4 @@
+#docker-machine ls -> ACTIVE
+eval $(docker-machine env Char)
+# eval - concatenate parameters
+#docker-machine ls -> ACTIVE
