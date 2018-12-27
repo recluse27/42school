@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:18:02 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/11/05 00:04:20 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	char	*ptr;
+	size_t	i;
 
+	if (s == NULL)
+		return (NULL);
+	ptr = (char*)malloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
+		return (NULL);
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	while (i < len)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		ptr[i] = s[start + i];
+		i++;
 	}
-	return (str);
+	ptr[i] = '\0';
+	return (ptr);
 }

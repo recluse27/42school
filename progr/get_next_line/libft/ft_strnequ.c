@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:17:34 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 02:58:40 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
-	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
-	}
-	return (str);
+	if (!s1 || !s2)
+		return (0);
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
 }

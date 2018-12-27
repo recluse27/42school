@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:32:28 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:32:33 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = n * -1;
+		}
+		if (n >= 10)
+			ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
 	}
-	return (str);
 }

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/11 16:17:06 by amagnan           #+#    #+#             */
+/*   Updated: 2018/09/11 16:17:14 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		s1[i + j] = s2[j];
+		j++;
 	}
-	return (str);
+	s1[i + j] = '\0';
+	return (s1);
 }

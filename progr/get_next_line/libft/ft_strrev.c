@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/23 01:23:10 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 01:23:25 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strrev(char *str)
 {
 	int		i;
-	char	*str;
-	char	*tmp;
+	int		l;
+	char	t;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	l = 0;
+	while (str[l] != '\0')
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		l++;
+	}
+	i = 0;
+	l--;
+	while (i < l)
+	{
+		t = str[i];
+		str[i] = str[l];
+		str[l] = t;
+		l--;
+		i++;
 	}
 	return (str);
 }

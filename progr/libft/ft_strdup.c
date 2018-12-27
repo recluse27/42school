@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/11 16:18:03 by amagnan           #+#    #+#             */
+/*   Updated: 2018/09/11 16:18:04 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char		*ft_strdup(const char *s1)
 {
-	int		i;
-	char	*str;
 	char	*tmp;
+	size_t	i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	tmp = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!tmp)
+		return (NULL);
+	while (s1[i])
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		tmp[i] = s1[i];
+		i++;
 	}
-	return (str);
+	tmp[i] = '\0';
+	return (tmp);
 }

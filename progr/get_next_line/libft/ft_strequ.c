@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:16:44 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:16:46 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (s1 && s2)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		while (*s1 == *s2 && *s1 && *s2)
+		{
+			s1++;
+			s2++;
+		}
+		if (*s1 == '\0' && *s2 == '\0')
+			return (1);
 	}
-	return (str);
+	return (0);
 }

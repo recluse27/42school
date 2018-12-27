@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_mapdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/12/10 15:54:59 by amagnan           #+#    #+#             */
+/*   Updated: 2018/12/10 15:55:06 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char			**ft_mapdup(char **map)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	int			i;
+	char		**new;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	while (map[i])
+		i++;
+	new = (char **)malloc(sizeof(char *) * i + 1);
+	i = 0;
+	while (map[i])
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		new[i] = ft_strdup(map[i]);
+		i++;
 	}
-	return (str);
+	new[i] = NULL;
+	return (new);
 }

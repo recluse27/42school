@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_clean_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/20 04:43:46 by amagnan           #+#    #+#             */
+/*   Updated: 2018/10/20 04:43:47 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char				*ft_clean_str(char *str)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	char			*new_str;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
-	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
-	}
-	return (str);
+	new_str = ft_strnew(ft_strlen(str));
+	new_str = ft_strcpy(new_str, str);
+	ft_strdel(&str);
+	return (new_str);
 }

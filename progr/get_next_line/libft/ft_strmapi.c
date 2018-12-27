@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:11:19 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:11:21 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	unsigned int	i;
+	char			*res;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (s)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		res = ft_memalloc(ft_strlen(s) + 1);
+		if (!res)
+			return (NULL);
+		while (s[i])
+		{
+			res[i] = f(i, s[i]);
+			i++;
+		}
+		res[i] = '\0';
+		return (res);
 	}
-	return (str);
+	return (NULL);
 }

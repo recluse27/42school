@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_lst_reverse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/23 01:28:50 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 01:29:10 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+t_list		*ft_lst_reverse(t_list *alst)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	t_list	*prev;
+	t_list	*cur;
+	t_list	*next;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	prev = NULL;
+	cur = alst;
+	while (cur)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
 	}
-	return (str);
+	alst = prev;
+	return (alst);
 }

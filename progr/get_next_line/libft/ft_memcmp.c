@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 16:18:39 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 16:21:26 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
-	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
-	}
-	return (str);
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	while (n--)
+		if (*ps1++ != *ps2++)
+			return (*--ps1 - *--ps2);
+	return (0);
 }

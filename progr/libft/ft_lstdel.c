@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/11 16:59:36 by amagnan           #+#    #+#             */
+/*   Updated: 2018/09/11 16:59:39 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	t_list	*list;
+	t_list	*next_list;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	list = *alst;
+	while (list)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		next_list = list->next;
+		del(list->content, list->content_size);
+		free(list);
+		list = next_list;
 	}
-	return (str);
+	*alst = NULL;
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 16:01:43 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 16:01:57 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	while (i < n)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		d[i] = s[i];
+		i++;
 	}
-	return (str);
+	return (dest);
 }

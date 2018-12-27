@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_mapalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/11/05 13:15:18 by amagnan           #+#    #+#             */
+/*   Updated: 2018/11/05 13:15:18 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char			**ft_mapalloc(int i, int j)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	char		**map;
+	int			k;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	k = 0;
+	if (!(map = (char **)malloc(sizeof(char *) * i + 1)))
+		return (NULL);
+	while (k < i)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		map[k] = ft_strnew(j);
+		k++;
 	}
-	return (str);
+	map[k] = NULL;
+	return (map);
 }

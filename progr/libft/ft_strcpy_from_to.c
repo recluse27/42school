@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy_from_to.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/19 12:05:09 by amagnan           #+#    #+#             */
+/*   Updated: 2018/10/19 12:05:09 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char			*ft_strcpy_from_to(char *str, int a, int b)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	char		*new;
+	int			i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	new = ft_strnew(b - a + 1);
+	while (a <= b)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		new[i] = str[a];
+		a++;
+		i++;
 	}
-	return (str);
+	new[i] = '\0';
+	return (new);
 }

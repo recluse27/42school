@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 15:46:19 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 02:45:36 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	size_t	var;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (!(*needle))
+		return ((char *)haystack);
+	var = ft_strlen(needle);
+	while (*haystack && var <= len--)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		if (*haystack == *needle && ft_memcmp(haystack, needle, var) == 0)
+			return ((char *)haystack);
+		haystack++;
 	}
-	return (str);
+	return ((void *)0);
 }

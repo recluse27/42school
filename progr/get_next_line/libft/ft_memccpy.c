@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 16:03:14 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 16:04:21 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+void	*ft_memccpy(void *d, const void *src, int c, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	unsigned char	*a;
+	unsigned char	*b;
+	unsigned char	k;
+	size_t			i;
 
+	a = (unsigned char *)d;
+	b = (unsigned char *)src;
+	k = (unsigned char)c;
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	while (i < n)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		a[i] = b[i];
+		if (b[i] == k)
+			return (d + i + 1);
+		i++;
 	}
-	return (str);
+	return (NULL);
 }

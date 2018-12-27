@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/10 18:06:22 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/09/11 19:52:17 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	size_t i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	while (src[i] != '\0' && i < len)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		dst[i] = src[i];
+		i++;
 	}
-	return (str);
+	while (i < len)
+		dst[i++] = '\0';
+	return (dst);
 }

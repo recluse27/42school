@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/12 23:32:24 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 02:48:08 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	const unsigned char *p1 = (const unsigned char *)s1;
+	const unsigned char *p2 = (const unsigned char *)s2;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	while (*p1 == *p2 && n)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		if (*p1 == '\0' && *p2 == '\0')
+			return (0);
+		p1++;
+		p2++;
+		n--;
 	}
-	return (str);
+	if (n == 0)
+		return (0);
+	return (*p1 - *p2);
 }

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/11 13:23:12 by amagnan           #+#    #+#             */
+/*   Updated: 2018/09/11 13:23:14 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char		*ft_strmap(char const *s, char (*f)(char))
 {
-	int		i;
-	char	*str;
 	char	*tmp;
+	int		i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (!s || !f)
+		return (NULL);
+	if (!(tmp = (char *)malloc(sizeof(char) * ft_strlen(s) + 1)))
+		return (NULL);
+	while (s[i])
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		tmp[i] = f(s[i]);
+		i++;
 	}
-	return (str);
+	tmp[i] = '\0';
+	return (tmp);
 }

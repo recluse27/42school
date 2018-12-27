@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 17:30:58 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/01 17:31:01 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+void	ft_putnbr(int n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	int i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
+	else
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		if (n < 0)
+		{
+			n = -n;
+			ft_putchar('-');
+		}
+		if (n >= 10)
+		{
+			ft_putnbr(n / 10);
+		}
+		ft_putchar(n % 10 + '0');
 	}
-	return (str);
 }

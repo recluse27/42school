@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/01 15:49:57 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 02:48:53 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_atoi(const char *str)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	int long	res;
+	int			neg;
+	const char	*s;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	s = str;
+	while (*s && ft_isspace(*s))
+		s++;
+	neg = 1;
+	if (*s == '+' || *s == '-')
+		if (*s++ == '-')
+			neg = -1;
+	res = 0;
+	while (*s >= '0' && *s <= '9')
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		res = res * 10 + neg * (*s++ - 48);
 	}
-	return (str);
+	return ((int)res);
 }

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_lst_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/23 01:24:24 by vlazuka           #+#    #+#             */
+/*   Updated: 2018/10/23 02:53:08 by vlazuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int		ft_lst_size(t_list *begin_list)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	t_list	*list;
+	int		len;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	len = 0;
+	list = begin_list;
+	while (list)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		list = list->next;
+		len++;
 	}
-	return (str);
+	return (len);
 }

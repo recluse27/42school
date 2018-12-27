@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strcat_from.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/10/18 17:14:44 by amagnan           #+#    #+#             */
+/*   Updated: 2018/10/18 17:14:44 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+char	*ft_strcat_from(char *str1, char *str2, int i)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	int	j;
 
-	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	j = 0;
+	while (str1[j])
+		j++;
+	while (str2[i++])
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		str1[j] = str2[i];
+		j++;
 	}
-	return (str);
+	str1[j] = '\0';
+	return (str1);
 }

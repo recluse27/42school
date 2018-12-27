@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcon.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlazuka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amagnan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 15:29:49 by vlazuka           #+#    #+#             */
-/*   Updated: 2018/12/13 15:29:57 by vlazuka          ###   ########.fr       */
+/*   Created: 2018/09/11 13:44:51 by amagnan           #+#    #+#             */
+/*   Updated: 2018/09/11 13:44:52 by amagnan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcon(char **arr, char *c)
+int			ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int		i;
-	char	*str;
-	char	*tmp;
+	size_t	i;
 
 	i = 0;
-	str = ft_strnew(1);
-	while (arr[i])
+	if (s1 == NULL && s2 == NULL)
+		return (1);
+	if (!s1 || !s2)
+		return (0);
+	while (s1[i] && s2[i] && i < n)
 	{
-		tmp = ft_strjoin(str, arr[i]);
-		free(str);
-		str = tmp;
-		tmp = ft_strjoin(str, c);
-		free(str);
-		str = tmp;
-		++i;
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
 	}
-	return (str);
+	return (1);
 }
